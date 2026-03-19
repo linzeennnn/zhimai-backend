@@ -96,6 +96,7 @@ app.get('/health', (req, res) => {
 
 // 数据库连接和同步
 async function initializeDatabase() {
+    console.log('数据库名:', process.env.DB_NAME);
     try {
         await sequelize.authenticate();
         console.log('MySQL 连接成功');
