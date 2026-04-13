@@ -32,7 +32,15 @@ class ActivityService {
             const where = {};
 
             // 基础筛选条件
-            if (type) where.activity_type = type;
+            if (type){
+                if (type === '二课') {
+                    where.activity_type = { [Op.in]: ['二课', '二课综测'] };
+                  } else if (type === '综测') {
+                    where.activity_type = { [Op.in]: ['综测', '二课综测'] };
+                  } else {
+                    where.activity_type = type;
+                  }
+            }
             if (status) where.status = status;
             if (creditType) where.credit_type = creditType;
             if (channel) where.participation_channel = channel;
